@@ -1,0 +1,54 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #111;
+  color: white;
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+}
+
+h1 {
+  font-size: 32px;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #444;
+  padding-bottom: 10px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 20px;
+}
+
+.movie {
+  background-color: #1c1c1c;
+  padding: 10px;
+  border-radius: 8px;
+  transition: transform 0.2s ease;
+  text-align: center;
+}
+
+.movie:hover {
+  transform: scale(1.05);
+}
+
+.movie img {
+  width: 100%;
+  border-radius: 4px;
+  height: 270px;
+  object-fit: cover;
+}
+
+.movie h2 {
+  font-size: 16px;
+  margin: 10px 0 5px;
+}
+
+.movie p {
+  font-size: 14px;
+  color: #aaa;
+}
