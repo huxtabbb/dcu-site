@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>Superman (2025) – Ocena</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Superman (2025)</h1>
+
+    <img src="img/superman.jpg" alt="Superman" style="width: 100%; max-width: 400px; border-radius: 8px; display: block; margin: auto;" />
+
+    <form action="https://formspree.io/f/your-id" method="POST">
+      <input type="hidden" name="film" value="Superman (2025)" />
+
+      <label>Twoja ocena (0–10):
+        <input type="number" name="ocena" min="0" max="10" required>
+      </label>
+
+      <label>Recenzja:
+        <textarea name="recenzja" rows="4" placeholder="Co sądzisz o filmie?" required></textarea>
+      </label>
+
+      <label>Twoje imię (opcjonalne):
+        <input type="text" name="autor">
+      </label>
+
+      <button type="submit">Wyślij recenzję</button>
+    </form>
+  </div>
+</body>
+</html>
