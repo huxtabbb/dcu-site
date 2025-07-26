@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Fantastyczna Czwórka — Recenzje</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Fantastyczna Czwórka</h1>
+    <img src="img/fantastyczna.jpg" alt="Fantastyczna Czwórka" style="width:100%; max-width:400px; border-radius:8px;" />
+    
+    <form id="review-form">
+      <label>
+        Ocena (0-10):
+        <input type="number" id="rating" name="rating" min="0" max="10" required />
+      </label>
+      <label>
+        Komentarz:
+        <textarea id="comment" name="comment" rows="3" required></textarea>
+      </label>
+      <label>
+        Podpis:
+        <input type="text" id="author" name="author" required />
+      </label>
+      <button type="submit">Dodaj recenzję</button>
+    </form>
+
+    <h2>Recenzje</h2>
+    <div id="reviews-list">Ładowanie recenzji...</div>
+  </div>
+
+  <script>
+    const sheetBestUrl = "https://sheet.best/api/sheets/TWOJ_ID"; // ← wklej swój
+    const filmName = "Fantastyczna Czwórka"; // ← Uwaga! musi dokładnie zgadzać się z tym, co wpisujesz w formularzu
+
+    async function fetchReviews() {
+      try {
+        const res = await fetch(sheetBestUrl);
+        const data = await res.json();
+        const reviewsList = document.getElementById('reviews-list');
+        reviewsList.innerHTML = '';
+        const filtered = data.filter(r => r.film === filmName);
+        if (filtered.length === 0) {
+          reviewsList.innerHTML = '<p>Brak recenzji, bądź pierwszy!</p>';
+          return;
+        }
+        filtered.forEach(r => {
+          const div = document.createElement('div');
+          div.innerHTML = `
+            <strong>${r.autor}</strong> ocena: <em>${r.ocena}</em><br />
+            <p>${r.komentarz}</p>
+          `;
+          reviewsList.appendChild(div);
+        });
+      } catch (err) {
+        document.getElementById('reviews-list').innerHTML = 'Błąd ładowania recenzji.';
+        console.error(err);
+      }
+    }
+
+    document.getElementById('review-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const ocena = document.getElementById('rating').value;
+      const komentarz = document.getElementById('comment').value;
+      const autor = document.getElementById('author').value;
+
+      const newReview = {
+        film: filmName,
+        ocena: ocena,
+        komentarz: komentarz,
+        autor: autor,
+        data: new Date().toISOString()
+      };
+
+      try {
+        const res = await fetch(sheetBestUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(newReview)
+        });
+
+        if (res.ok) {
+          alert('Dziękujemy za recenzję!');
+          e.target.reset();
+          fetchReviews();
+        } else {
+          alert('Coś poszło nie tak, spróbuj ponownie.');
+        }
+      } catch (err) {
+        alert('Błąd sieci, spróbuj ponownie.');
+        console.error(err);
+      }
+    });
+
+    fetchReviews();
+  </script>
+</body>
+</html>
