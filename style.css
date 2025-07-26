@@ -1,12 +1,12 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background-color: #111;
+  background-color: #121212;
   color: white;
 }
 
 .container {
-  max-width: 1200px;
+  max-width: 1000px;
   margin: auto;
   padding: 20px;
 }
@@ -14,6 +14,7 @@ body {
 h1 {
   font-size: 32px;
   margin-bottom: 20px;
+  text-align: center;
   border-bottom: 2px solid #444;
   padding-bottom: 10px;
 }
@@ -28,8 +29,10 @@ h1 {
   background-color: #1c1c1c;
   padding: 10px;
   border-radius: 8px;
-  transition: transform 0.2s ease;
   text-align: center;
+  text-decoration: none;
+  color: white;
+  transition: transform 0.2s ease;
 }
 
 .movie:hover {
@@ -38,9 +41,9 @@ h1 {
 
 .movie img {
   width: 100%;
-  border-radius: 4px;
   height: 270px;
   object-fit: cover;
+  border-radius: 4px;
 }
 
 .movie h2 {
@@ -48,7 +51,39 @@ h1 {
   margin: 10px 0 5px;
 }
 
-.movie p {
-  font-size: 14px;
-  color: #aaa;
+form {
+  background-color: #1e1e1e;
+  padding: 20px;
+  border-radius: 8px;
+  margin-top: 20px;
+}
+
+form label {
+  display: block;
+  margin-bottom: 15px;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 10px;
+  background-color: #2c2c2c;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  margin-top: 5px;
+}
+
+button {
+  background-color: #e50914;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 10px;
+}
+
+button:hover {
+  background-color: #ff1e1e;
 }
